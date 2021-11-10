@@ -5,13 +5,15 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "../../State/StateProvider.js";
 import { getAuth, signOut } from "@firebase/auth";
 
-
 const Header = () => {
   const [{ basket, user }, dispatch] = useStateValue();
   const auth = getAuth();
   const handleAuthentication = () => {
     if (user) {
       signOut(auth);
+      dispatch({
+        type: "EMPTY_BASKET",
+      });
     }
   };
   return (
@@ -46,16 +48,15 @@ const Header = () => {
           <span className="header__navElementOne">your</span>
           <span className="header__navElementTwo">Prime</span>
         </div>
-      <Link to="/checkout" className="link">
-        <div className="header__cart">
-          <ShoppingBasketIcon />
-          <span className="header__navElementTwo header__cartTwo">
-            {basket?.length}
-          </span>
-        </div>
-      </Link>
+        <Link to="/checkout" className="link">
+          <div className="header__cart">
+            <ShoppingBasketIcon />
+            <span className="header__navElementTwo header__cartTwo">
+              {basket?.length}
+            </span>
+          </div>
+        </Link>
       </div>
-
     </div>
   );
 };

@@ -11,13 +11,18 @@ export default function PaymentForm() {
   const [expiry, setExpiry] = useState("");
   const [cvc, setCvc] = useState("");
   const [focus, setFocus] = useState("");
-  const [{ basket }] = useStateValue();
+  const [{ basket }, dispatch] = useStateValue();
 
   useEffect(() => {
     ref.current.focus();
   }, []);
 
   const ref = useRef(null);
+  const handlePayment = () => {
+    dispatch({
+      type: "EMPTY_BASKET",
+    });
+  };
   return (
     <div className="payment_form">
       <Cards
@@ -64,7 +69,9 @@ export default function PaymentForm() {
         />
         <Link to="/" className="link">
           <h5 className="payment__total">Total: {getBasketTotal(basket)}</h5>
-          <button className="btn">PAY</button>
+          <button className="btn" onClick={handlePayment}>
+            PAY
+          </button>
         </Link>
       </form>
     </div>
