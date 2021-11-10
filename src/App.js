@@ -10,7 +10,6 @@ import { useStateValue } from "./State/StateProvider.js";
 import Footer from "./components/Footer/Footer";
 import Payment from "./components/Payment/Payment";
 
-
 const App = () => {
   const [{}, dispatch] = useStateValue();
   const auth = getAuth();

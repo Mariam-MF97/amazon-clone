@@ -1,13 +1,10 @@
 import React from "react";
 import "./Header.css";
-import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../State/StateProvider.js";
 import { getAuth, signOut } from "@firebase/auth";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+
 
 const Header = () => {
   const [{ basket, user }, dispatch] = useStateValue();
